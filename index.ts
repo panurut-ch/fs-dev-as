@@ -1,4 +1,6 @@
 export function main(): number[] {
+  console.time("Execution Time"); // เริ่มนับ
+
   let count_consecutive = 0; // นับตัวเรียง
   let prime_start = 2;
 
@@ -24,22 +26,20 @@ export function main(): number[] {
     // check dup
     if (int_number > 1) {
       if (!factor_array.includes(int_number)) {
-        //   console.log("int_number", int_number);
         factor_array.push(int_number);
       }
     }
 
     if (factor_array.length === 4) {
       count_consecutive++;
-      // console.log("count_consecutive", count_consecutive);
       if (count_consecutive === 4) {
+        console.timeEnd("Execution Time"); // เวลาทั้งหมด
         console.log(
           `${prime_start - 3} ${prime_start - 2} ${
             prime_start - 1
           } ${prime_start}`
         );
         return [prime_start - 3, prime_start - 2, prime_start - 1, prime_start];
-        break;
       }
     } else {
       count_consecutive = 0;
@@ -48,3 +48,4 @@ export function main(): number[] {
     prime_start++;
   }
 }
+main();
